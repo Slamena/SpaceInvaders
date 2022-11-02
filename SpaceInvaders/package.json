@@ -1,0 +1,15 @@
+{
+  "name": "spaceinviders",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Javier Gonzalez <javier.gnz9508@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite",
+    "build" : "tsc"
+  },
+  "dependencies": {
+    "typescript": "^4.8.4",
+    "vite": "^3.2.2"
+  }
+}
