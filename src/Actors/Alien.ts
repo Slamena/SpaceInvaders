@@ -5,12 +5,13 @@ import { abs, hypot } from "../utils/Math";
 import { Actor } from "./Actor";
 import { SpaceShip } from "./SpaceShip";
 
-const SPRITE = "./src/assets/images/Alien.png";
+const SPRITE = "./src/assets/images/alienSprites/Alien.png";
 
 export  class Alien extends Actor {
     death: boolean;
     size: Size;
     sprite: HTMLImageElement;
+    explosion: HTMLAudioElement;
     
     constructor(props: Point, speed: number){
         super(props);
@@ -22,6 +23,9 @@ export  class Alien extends Actor {
         }
         this.sprite = new Image();
         this.sprite.src = SPRITE;
+        this.explosion = new Audio();
+        this.explosion.src = "./src/assets/sounds/Explosion.mp3"
+        this.explosion.volume = 0.3;
     }
 
     update(delta: number): void {
@@ -67,4 +71,10 @@ export  class Alien extends Actor {
         }
         return false;
     }
+
+    deathSound():void {
+        this.explosion.play();
+    }
 }
+
+export const createAlien = (pos: Point, speed: number) => new Alien(pos, speed);

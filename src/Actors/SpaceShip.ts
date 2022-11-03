@@ -36,8 +36,7 @@ export class SpaceShip extends Actor {
         
     }
 
-    update(delta: number): void { 
-         
+    update(delta: number): void {
         const newPos = {
             x: this.position.x+(this.speed),
             y: this.position.y
@@ -54,16 +53,15 @@ export class SpaceShip extends Actor {
         ctx.drawImage(this.sprite,this.position.x, this.position.y);
         
         this.ammu.forEach((laser) => {
-            ctx.save();
             laser.update(0);
             laser.draw(ctx);
-            ctx.restore();
         })
         if(this.reloading){
             ctx.font = "35px Consolas";
             ctx.fillStyle = "#FFF";
             ctx.fillText("Reloading", this.position.x-30, this.position.y+(this.size.h)+30);
         }
+        ctx.font = "35px Consolas";
         ctx.fillStyle = "#FFF";
         ctx.fillText(`Lifes: ${this.lifes}`, 1320, 30);
     }
@@ -138,3 +136,5 @@ export class SpaceShip extends Actor {
         return false;
     }
 }
+
+export const createPlayer = (pos: Point) => new SpaceShip(pos);

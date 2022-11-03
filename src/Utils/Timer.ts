@@ -1,4 +1,5 @@
-import { Actor } from "../Actors/Actor";
+import { Actor } from "../actors/Actor";
+import { Point } from "../types/Point";
 
 export const startTimer = (ms: number) => {
   return new Promise((resolve, reject) => {
@@ -20,3 +21,5 @@ export class Timer extends Actor {
     ctx.fillText(`Time: ${this.elapsed.toFixed(1)}s`, this.position.x, this.position.y);
   }
 }
+
+export const createGlobalTimer = () => new Timer({ x: 20, y: 30 });
