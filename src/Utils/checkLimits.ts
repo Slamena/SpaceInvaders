@@ -1,7 +1,7 @@
-import { Point } from "../Types/Point";
+import { Point } from "../types/Point";
 
 export const checkXLimits = (position: Point): boolean => {
-    if (position.x <= 1500 && position.x >= 0) {
+    if (position.x <= 1400 && position.x >= 0) {
         return true;
     }
     return false;

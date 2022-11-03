@@ -1,23 +1,27 @@
-import { Point } from "../Types/Point"
-import { Size } from "../Types/Size";
-import { checkYLimits } from "../Utils/checkLimits";
-import { abs, hypot } from "../Utils/Math";
+import { Point } from "../types/Point"
+import { Size } from "../types/Size";
+import { checkYLimits } from "../utils/checkLimits";
+import { abs, hypot } from "../utils/Math";
 import { Actor } from "./Actor";
 import { SpaceShip } from "./SpaceShip";
 
+const SPRITE = "./src/assets/images/Alien.png";
 
 export  class Alien extends Actor {
     death: boolean;
     size: Size;
+    sprite: HTMLImageElement;
     
-    constructor(props: Point){
+    constructor(props: Point, speed: number){
         super(props);
-        this.speed = 2;
+        this.speed = speed;
         this.death = false;
         this.size = {
             w: 100,
             h: 100
         }
+        this.sprite = new Image();
+        this.sprite.src = SPRITE;
     }
 
     update(delta: number): void {
@@ -30,8 +34,7 @@ export  class Alien extends Actor {
     }
 
     draw(ctx: CanvasRenderingContext2D): void {
-        ctx.fillStyle = "black";
-        ctx.fillRect(this.position.x, this.position.y, this.size.w, this.size.h);
+        ctx.drawImage(this.sprite,this.position.x, this.position.y);
     }
 
     checkDeath(): boolean{

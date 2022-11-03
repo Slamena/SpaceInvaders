@@ -1,4 +1,4 @@
-import { Point } from "../Types/Point"
+import { Point } from "../types/Point"
 
 interface ActorInterface {
     position: Point;

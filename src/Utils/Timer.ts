@@ -1,4 +1,4 @@
-import { Actor } from "../Actors/Actor";
+import { Actor } from "../actors/Actor";
 
 export const startTimer = (ms: number) => {
   return new Promise((resolve, reject) => {
@@ -16,7 +16,7 @@ export class Timer extends Actor {
     this.elapsed = this.elapsed + (1/60);
     ctx.font = "35px Consolas";
     //Pintar FPS
-    ctx.fillStyle = "#000";
+    ctx.fillStyle = "#FFF";
     ctx.fillText(`Time: ${this.elapsed.toFixed(1)}s`, this.position.x, this.position.y);
   }
 }

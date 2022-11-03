@@ -1,10 +1,13 @@
-import { Point } from "../Types/Point";
-import { Size } from "../Types/Size";
-import { checkXLimits} from "../Utils/checkLimits";
-import { startTimer } from "../Utils/Timer";
+import { Point } from "../types/Point";
+import { Size } from "../types/Size";
+import { checkXLimits} from "../utils/checkLimits";
+import { startTimer } from "../utils/Timer";
 import { Actor } from "./Actor";
 import { Ammunition } from "./Ammunition";
 
+const SPRITE = "./src/assets/images/SpaceShip.png";
+const LEFT_SPRITE = "./src/assets/images/SpaceShipLeft.png";
+const RIGHT_SPRITE = "./src/assets/images/SpaceShipRight.png";
 
 export class SpaceShip extends Actor {
     reloading: boolean;
@@ -13,6 +16,7 @@ export class SpaceShip extends Actor {
     maxMuni: number;
     score: number;
     lifes: number;
+    sprite: HTMLImageElement;
 
     constructor(props: Point) {
         super(props);
@@ -26,6 +30,8 @@ export class SpaceShip extends Actor {
         this.score = 0;
         this.lifes = 3;
         this.maxMuni = 25;
+        this.sprite = new Image();
+        this.sprite.src = SPRITE;
     }
 
     update(delta: number): void { 
@@ -39,11 +45,12 @@ export class SpaceShip extends Actor {
         }else{
             this.speed = 0;
         }
+        let image = new Image();
     }
 
     draw(ctx: CanvasRenderingContext2D): void {
-        ctx.fillStyle = "blue";
-        ctx.fillRect(this.position.x, this.position.y, this.size.w, this.size.h);
+        ctx.drawImage(this.sprite,this.position.x, this.position.y);
+        
         this.ammu.forEach((laser) => {
             ctx.save();
             laser.update(0);
@@ -52,10 +59,10 @@ export class SpaceShip extends Actor {
         })
         if(this.reloading){
             ctx.font = "35px Consolas";
-            ctx.fillStyle = "#000";
+            ctx.fillStyle = "#FFF";
             ctx.fillText("Reloading", this.position.x-30, this.position.y+(this.size.h)+30);
         }
-        ctx.fillStyle = "#000";
+        ctx.fillStyle = "#FFF";
         ctx.fillText(`Lifes: ${this.lifes}`, 1320, 30);
     }
 
@@ -63,9 +70,11 @@ export class SpaceShip extends Actor {
         switch (key) {
             case "d":
                 this.speed = 10;
+                this.sprite.src = RIGHT_SPRITE;
                 break;
             case "a":
                 this.speed = -10;
+                this.sprite.src = LEFT_SPRITE;
                 break;
             case " ":
                 this.shoot();
@@ -77,9 +86,11 @@ export class SpaceShip extends Actor {
         switch (key) {
             case "d":
                 this.speed = 0;
+                this.sprite.src = SPRITE;
                 break;
             case "a":
                 this.speed = 0;
+                this.sprite.src = SPRITE;
                 break;
         }
     }
@@ -113,6 +124,7 @@ export class SpaceShip extends Actor {
 
     checkLifes():boolean {
         if(this.lifes===0){
+            this.position = { x: 700, y: 1350 };
             this.reloading = false;
             this.speed = 0;
             this.ammu = [];

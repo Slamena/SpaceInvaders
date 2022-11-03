@@ -60,4 +60,5 @@ body {
     height: 750px;
 	border: 5px solid orange;
 	border-radius: 5px;
+	background-image: url("./src/assets/images/Background.png")
 }
