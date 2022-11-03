@@ -12,6 +12,7 @@ export class Ammunition extends Actor {
     sprite: HTMLImageElement;
     frame: number;
     timer: number;
+    shootAudio: HTMLAudioElement;
 
     constructor(pos: Point) {
         super(pos);
@@ -24,6 +25,10 @@ export class Ammunition extends Actor {
         this.sprite.src = SPRITES[0];
         this.frame = 0;
         this.timer = 0;
+        this.shootAudio = new Audio();
+        this.shootAudio.src = "./src/assets/sounds/LaserShot.mp3"
+        this.shootAudio.volume = 0.3;
+        this.shootAudio.play();
     }
 
     update(delta: number): void {

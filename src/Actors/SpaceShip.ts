@@ -17,6 +17,7 @@ export class SpaceShip extends Actor {
     score: number;
     lifes: number;
     sprite: HTMLImageElement;
+    
 
     constructor(props: Point) {
         super(props);
@@ -32,6 +33,7 @@ export class SpaceShip extends Actor {
         this.maxMuni = 25;
         this.sprite = new Image();
         this.sprite.src = SPRITE;
+        
     }
 
     update(delta: number): void { 

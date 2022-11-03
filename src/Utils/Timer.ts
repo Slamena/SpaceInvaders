@@ -1,4 +1,4 @@
-import { Actor } from "../actors/Actor";
+import { Actor } from "../Actors/Actor";
 
 export const startTimer = (ms: number) => {
   return new Promise((resolve, reject) => {

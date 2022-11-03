@@ -1,7 +1,7 @@
-import { Alien } from "./actors/Alien";
-import { SpaceShip } from "./actors/SpaceShip";
-import { randomeNum } from "./utils/Math";
-import { Timer } from "./utils/Timer";
+import { Alien } from "./Actors/Alien";
+import { SpaceShip } from "./Actors/SpaceShip";
+import { randomeNum } from "./Utils/Math";
+import { Timer } from "./Utils/Timer";
 
 const root_element: HTMLElement | any = document.getElementById('root');
 let score = document.createElement('p');
