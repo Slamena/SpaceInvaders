@@ -33,6 +33,7 @@ export class GameManager {
     this.player.draw(ctx);
     this.aliens.forEach((alien) => alien.draw(ctx));
     this.timer.draw(ctx);
+    
   }
 
   startGame(): void {

@@ -26,6 +26,7 @@ export class SpaceShip extends Actor {
     right: false,
     shoot: false,
   };
+  cd: boolean = false;
 
   constructor(props: Point) {
     super(props);
@@ -46,7 +47,13 @@ export class SpaceShip extends Actor {
     // Shoot
     if (this.buttons.shoot) {
       this.buttons.shoot = false;
-      this.shoot();
+      if(!this.cd){
+        this.shoot();
+        this.cd = true;
+        setTimeout(() => {
+          this.cd = false;
+        }, 150);
+      }
     }
 
     let accelerate = 0;

@@ -1,3 +1,4 @@
+import { FPSViewer } from "./actors/fpsviewer";
 import { GameManager } from "./GameManager";
 
 const root_element: HTMLElement | any = document.getElementById("root");
@@ -14,8 +15,14 @@ window.onload = () => {
   let gameManager = new GameManager();
   gameManager.createAliens(1000);
 
+  let fpsViewer = new FPSViewer();
+
   //Parte del renderizado
+  let lastFrame = 0;
   const render = (time: number) => {
+    let delta = (time - lastFrame) / 1000;
+    lastFrame = time;
+    
     //* Pasos:
     // - Por cada Pacman obtengo una nueva posición
     gameManager.update();
@@ -24,6 +31,7 @@ window.onload = () => {
 
     ctx.save();
     gameManager.draw(ctx);
+    fpsViewer.draw(ctx,delta)
     ctx.restore();
 
     gameManager.laserHit();
