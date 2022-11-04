@@ -3,9 +3,9 @@ import { Size } from "../types/Size";
 import { checkYLimits } from "../utils/checkLimits";
 import { abs, hypot } from "../utils/Math";
 import { Actor } from "./Actor";
-import { SpaceShip } from "./SpaceShip";
+import { SpaceShip } from "./Spaceship";
 
-const SPRITE = "./src/assets/images/alienSprites/Alien.png";
+const SPRITE = "/images/alienSprites/Alien.png";
 
 export  class Alien extends Actor {
     death: boolean;
@@ -24,7 +24,7 @@ export  class Alien extends Actor {
         this.sprite = new Image();
         this.sprite.src = SPRITE;
         this.explosion = new Audio();
-        this.explosion.src = "./src/assets/sounds/Explosion.mp3"
+        this.explosion.src = "/sounds/Explosion.mp3"
         this.explosion.volume = 0.3;
     }
 

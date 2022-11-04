@@ -5,10 +5,10 @@ import { Actor } from "./Actor";
 import { Alien } from "./Alien";
 
 const SPRITES = [
-    "./src/assets/images/LaserSprite1.png",
-    "./src/assets/images/LaserSprite2.png",
-    "./src/assets/images/LaserSprite3.png",
-    "./src/assets/images/LaserSprite4.png"];
+    "/images/lasersprite1.png",
+    "/images/lasersprite2.png",
+    "/images/lasersprite3.png",
+    "/images/lasersprite4.png"];
 
 export class Ammunition extends Actor {
     hit: boolean;
@@ -30,7 +30,7 @@ export class Ammunition extends Actor {
         this.frame = 0;
         this.timer = 0;
         this.shootAudio = new Audio();
-        this.shootAudio.src = "./src/assets/sounds/LaserShot.mp3"
+        this.shootAudio.src = "/sounds/LaserShot.mp3"
         this.shootAudio.volume = 0.3;
         this.shootAudio.play();
     }

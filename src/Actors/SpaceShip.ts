@@ -5,9 +5,9 @@ import { startTimer } from "../utils/Timer";
 import { Actor } from "./Actor";
 import { Ammunition } from "./Ammunition";
 
-const SPRITE = "./src/assets/images/SpaceShip.png";
-const LEFT_SPRITE = "./src/assets/images/SpaceShipLeft.png";
-const RIGHT_SPRITE = "./src/assets/images/SpaceShipRight.png";
+const SPRITE = "/images/spaceship.png";
+const LEFT_SPRITE = "/images/spaceshipleft.png";
+const RIGHT_SPRITE = "/images/spaceshipright.png";
 
 export class SpaceShip extends Actor {
     reloading: boolean;
@@ -46,7 +46,6 @@ export class SpaceShip extends Actor {
         }else{
             this.speed = 0;
         }
-        let image = new Image();
     }
 
     draw(ctx: CanvasRenderingContext2D): void {
