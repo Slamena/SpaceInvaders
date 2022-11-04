@@ -1,4 +1,4 @@
-import { Actor } from "../actors/Actor";
+import { Actor } from "../actors/actor";
 import { Point } from "../types/Point";
 
 export const startTimer = (ms: number) => {

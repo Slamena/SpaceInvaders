@@ -2,8 +2,8 @@ import { Point } from "../types/Point";
 import { Size } from "../types/Size";
 import { load_sprite } from "../utils/load_sprite";
 import { abs, hypot } from "../utils/Math";
-import { Actor } from "./Actor";
-import { Alien } from "./Alien";
+import { Actor } from "./actor";
+import { Alien } from "./alien";
 
 const SPRITES = [
   "/images/lasersprite1.png",
@@ -20,6 +20,7 @@ const shootAudio = new Audio();
 shootAudio.src = "/sounds/LaserShot.mp3";
 shootAudio.volume = 0.3;
 
+
 export class Ammunition extends Actor {
   hit: boolean;
   size: Size;
@@ -33,12 +34,10 @@ export class Ammunition extends Actor {
       w: 10,
       h: 60,
     };
-
     // Some animation data
     this.frame = 0;
     this.timer = 0;
-
-    shootAudio.play();
+    this.play();
   }
 
   update(delta: number): void {
@@ -70,5 +69,9 @@ export class Ammunition extends Actor {
         alien.death = true;
       }
     });
+  }
+  play():void {
+    shootAudio.currentTime = 0;
+    shootAudio.play();
   }
 }

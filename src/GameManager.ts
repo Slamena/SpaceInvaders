@@ -1,5 +1,5 @@
-import { Alien } from "./actors/Alien";
-import { createPlayer, SpaceShip } from "./actors/Spaceship";
+import { Alien } from "./actors/alien";
+import { createPlayer, SpaceShip } from "./actors/spaceship";
 import { randomeNum } from "./utils/Math";
 import { createGlobalTimer, Timer } from "./utils/Timer";
 

@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "vite",
-    "build" : "tsc"
+    "build": "tsc"
   },
   "dependencies": {
     "typescript": "^4.8.4",

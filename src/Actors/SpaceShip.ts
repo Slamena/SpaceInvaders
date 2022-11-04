@@ -3,8 +3,8 @@ import { Size } from "../types/Size";
 import { checkXLimits } from "../utils/checkLimits";
 import { load_sprite } from "../utils/load_sprite";
 import { startTimer } from "../utils/Timer";
-import { Actor } from "./Actor";
-import { Ammunition } from "./Ammunition";
+import { Actor } from "./actor";
+import { Ammunition } from "./ammunition";
 
 const SPACESHIP_SPRITE = {
   BASE: load_sprite("/images/spaceship.png"),
@@ -87,11 +87,6 @@ export class SpaceShip extends Actor {
         this.position.y + this.size.h + 30
       );
     }
-    ctx.fillText(
-      this.acceleration.toFixed(2),
-      this.position.x - 30,
-      this.position.y
-    );
     ctx.font = "35px Consolas";
     ctx.fillStyle = "#FFF";
     ctx.fillText(`Lifes: ${this.lifes}`, 1320, 30);
@@ -101,9 +96,11 @@ export class SpaceShip extends Actor {
     switch (key) {
       case "d":
         this.buttons.right = true;
+        this.sprite = SPACESHIP_SPRITE.RIGHT;
         break;
       case "a":
         this.buttons.left = true;
+        this.sprite = SPACESHIP_SPRITE.LEFT;
         break;
       case " ":
         this.buttons.shoot = true;
@@ -115,9 +112,11 @@ export class SpaceShip extends Actor {
     switch (key) {
       case "d":
         this.buttons.right = false;
+        this.sprite = SPACESHIP_SPRITE.BASE;
         break;
       case "a":
         this.buttons.left = false;
+        this.sprite = SPACESHIP_SPRITE.BASE;
         break;
     }
   }

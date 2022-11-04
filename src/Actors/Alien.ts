@@ -1,17 +1,21 @@
 import { Point } from "../types/Point"
 import { Size } from "../types/Size";
 import { checkYLimits } from "../utils/checkLimits";
+import { load_sprite } from "../utils/load_sprite";
 import { abs, hypot } from "../utils/Math";
-import { Actor } from "./Actor";
-import { SpaceShip } from "./Spaceship";
+import { Actor } from "./actor";
+import { SpaceShip } from "./spaceship";
 
-const SPRITE = "/images/alienSprites/Alien.png";
+const SPRITE = load_sprite("/images/alienSprites/Alien.png");
+
+const explosion = new Audio();
+explosion.src = "/sounds/Explosion.mp3"
+explosion.volume = 0.3;
 
 export  class Alien extends Actor {
     death: boolean;
     size: Size;
     sprite: HTMLImageElement;
-    explosion: HTMLAudioElement;
     
     constructor(props: Point, speed: number){
         super(props);
@@ -21,11 +25,7 @@ export  class Alien extends Actor {
             w: 100,
             h: 100
         }
-        this.sprite = new Image();
-        this.sprite.src = SPRITE;
-        this.explosion = new Audio();
-        this.explosion.src = "/sounds/Explosion.mp3"
-        this.explosion.volume = 0.3;
+        this.sprite = SPRITE;
     }
 
     update(delta: number): void {
@@ -73,7 +73,8 @@ export  class Alien extends Actor {
     }
 
     deathSound():void {
-        this.explosion.play();
+        explosion.currentTime = 0;
+        explosion.play();
     }
 }
 
