@@ -1,3 +1,4 @@
+import { Actor } from "./actors/actor";
 import { FPSViewer } from "./actors/fpsviewer";
 import { GameManager } from "./GameManager";
 
@@ -13,31 +14,30 @@ window.onload = () => {
   const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
 
   let gameManager = new GameManager();
-  gameManager.createAliens(1000);
 
   let fpsViewer = new FPSViewer();
 
+  let actors: Actor[] = [
+    gameManager,
+    fpsViewer
+  ];
   //Parte del renderizado
   let lastFrame = 0;
+  gameManager.startGame(ctx);
   const render = (time: number) => {
     let delta = (time - lastFrame) / 1000;
     lastFrame = time;
-    
-    //* Pasos:
-    // - Por cada Pacman obtengo una nueva posición
-    gameManager.update();
-    // - Borro todo el canvas
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    actors.forEach((actor) => actor.update(delta));
 
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.save();
-    gameManager.draw(ctx);
-    fpsViewer.draw(ctx,delta)
+    actors.forEach((actor) => actor.draw(ctx,delta));
     ctx.restore();
 
     gameManager.laserHit();
-    gameManager.collisionDetecto();
-    gameManager.checkLifes();
-    gameManager.checkScore();
+    gameManager.collisionDetecter();
+    gameManager.lose(ctx);
     score.innerHTML = "Score: " + gameManager.score() + " points";
 
     // Método Recursivo
@@ -47,13 +47,10 @@ window.onload = () => {
   //Permite renderizar
   window.requestAnimationFrame(render);
 
-  //Obtener tecla por medio del DOM
   document.body.addEventListener("keydown", (e) => {
-    // - Controla la dirección de todos los Pacman
     gameManager.keyboardEventDown(e.key);
   });
   document.body.addEventListener("keyup", (e) => {
-    // - Controla la dirección de todos los Pacman
     gameManager.keyboardEventUp(e.key);
   });
 };
