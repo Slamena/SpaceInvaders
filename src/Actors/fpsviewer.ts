@@ -1,9 +1,12 @@
-import { Actor } from "./actor";
+import { Actor } from "./Actor";
 import { Point } from "../types/Point";
 
 export class FPSViewer extends Actor {
   constructor() {
     super({ x: 700, y: 35 });
+  }
+  getname() {
+    return "FPSViewer";
   }
   // Se pinta un texto con los FPS
   draw(ctx: CanvasRenderingContext2D, delta: number) {

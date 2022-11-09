@@ -1,148 +1,112 @@
-import Swal from "sweetalert2";
-import { Actor } from "./actors/actor";
-import { Alien } from "./actors/alien";
-import { createPlayer, SpaceShip } from "./actors/spaceship";
+import { SpaceShip } from "./actors/SpaceShip";
 import { randomeNum } from "./utils/Math";
-import { createGlobalTimer, Timer } from "./utils/Timer";
+import { Timer } from "./actors/Timer";
+import { TextBanner } from "./actors/TextBanner";
+import { Actor } from "./actors/Actor";
+import { Manager } from "./actors/ActorManager";
+import { Alien } from "./actors/Alien";
+import { FPSViewer } from "./actors/fpsviewer";
 
 export class GameManager extends Actor {
-  player: SpaceShip;
-  aliens: Alien[];
-  timer: Timer;
-  aliensSpeed: number;
-  startNewGame: boolean;
-  gameRunning: boolean;
-
+  player?: SpaceShip;
+  aliensSpeed: number = 2;
+  gameRunning: boolean = false;
+  timer_id?: number;
+  banner: TextBanner = new TextBanner("Press Enter to start.", {
+    x: 600,
+    y: 600,
+  });
+  score: TextBanner = new TextBanner("Puntos 0");
+  game_id: string;
   constructor() {
-    super({ x: 0, y: 0 })
-    this.player = createPlayer({ x: 700, y: 1350 });
-    this.aliens = [];
-    this.timer = createGlobalTimer();
-    this.aliensSpeed = 2;
-    this.startNewGame = false;
-    this.gameRunning = false;
+    super({ x: 0, y: 0 });
+    this.game_id = Math.floor(Math.random() * 1000).toFixed(0);
+    // Remove previous
+    Manager.delete_all_actors();
+
+    // Create a new Game
+    Manager.add_actor(this);
+
+    // Add all actors
+    let fpsViewer = new FPSViewer();
+    Manager.add_actor(fpsViewer);
+
+    this.player = new SpaceShip({ x: 700, y: 1350 });
+    Manager.add_actor(this.player);
+
+    let timer = new Timer({ x: 20, y: 30 });
+    Manager.add_actor(timer);
+
+    this.aliensSpeed = 2; // reset aliens speed to initial speed
+
+    this.start_game();
+  }
+
+  getname() {
+    return `GameManager-${this.game_id}`;
   }
 
   update(delta: number): void {
-    if (this.gameRunning) {
-      this.player.update(0);
-      this.aliens.forEach((alien) => alien.update(0));
-
-      // Additional speed for the aliens. "1" speed each 10 seconds in the game.
-      let additionalSpeed: number = Number((this.timer.elapsed / 10).toFixed(0));
-      this.aliensSpeed = additionalSpeed + 2;
-
-      this.player.ammu.forEach((muni) => {
-        muni.laserHit(this.aliens);
-      });
+    // Keep only live actors
+    //this.aliens = this.aliens.filter((a) => !a.to_delete);
+    if (this.player?.lifes < 1) {
+      // Stop Generating aliens
+      clearInterval(this.timer_id);
+      // Create a new instance
+      //const new_manager = new GameManager();
+      window.location = "/";
     }
   }
 
-  draw(ctx: CanvasRenderingContext2D, delta?: number): void {
-    if (this.gameRunning) {
-      this.player.draw(ctx);
-      this.aliens.forEach((alien) => alien.draw(ctx));
-      this.timer.draw(ctx);
-    }
-
-  }
-
-  startGame(ctx: CanvasRenderingContext2D): void {
-    if (this.gameRunning) {
-      this.resetGame();
+  start_game() {
+    const speed = this.aliensSpeed;
+    const new_alien_every = 1000;
+    if (!this.player) {
+      console.log("Please, call prepare_gameplay to restart the game first");
+      return;
     } else {
-      ctx.font = "35px Consolas";
-      ctx.fillStyle = "#FFF";
-      ctx.fillText("Press Enter to start.", 600, 720);
-      ctx.fill();
-    }
+      // Start creating aliens
+      this.timer_id = setInterval(() => {
+        let alienPos = {
+          x: randomeNum(1000) + 250,
+          y: -50,
+        };
 
-  }
-
-  resetGame(): void{
-    this.player = createPlayer({ x: 700, y: 1350 });
-    this.timer = createGlobalTimer();
-    this.aliens = [];
-    this.aliensSpeed = 2;
-  }
-
-  createAliens(ms: number) {
-    let timer = setInterval(() => {
-      if(!this.gameRunning){
-        clearInterval(timer);
-      }
-      let alienPos = {
-        x: randomeNum(1000) + 250,
-        y: -50,
-      };
-      this.aliens.push(new Alien(alienPos, this.aliensSpeed));
-    }, ms);
-  }
-
-  keyboardEventDown(key: string): void {
-    if (key === "Enter" && !this.gameRunning) {
-      this.createAliens(1000);
-      this.gameRunning = true;
-    }
-      this.player.keyboardEventDown(key);
-  }
-
-  keyboardEventUp(key: string): void {
-    this.player.keyboardEventUp(key);
-  }
-
-  laserHit(): void {
-    this.player.ammu.forEach((muni) => {
-      muni.laserHit(this.aliens);
-      if (muni.hit) {
-        this.player.updateScore(true);
-        muni.hit = false;
-        muni.position = { x: 1500, y: 1500 };
-      }
-    });
-  }
-
-  collisionDetecter(): void {
-    this.aliens.forEach((alien) => {
-      if (alien.collisionDetector(this.player)) {
-        this.player.lifes -= 1;
-        alien.deathSound();
-      }
-      if (alien.checkDeath()) {
-        this.aliens = this.aliens.filter((e) => e !== alien);
-        alien.deathSound();
-      }
-      if (alien.checkOutLimits()) {
-        this.aliens = this.aliens.filter((e) => e !== alien);
-        this.player.updateScore(false);
-      }
-    });
-  }
-
-  checkLifesEqualZero(): boolean {
-    let validation = false;
-    (this.player.lifes <= 0) ? validation = true : validation = false;
-    return validation;
-  }
-
-  checkScoreEqualZero(): boolean {
-    let validation = false;
-    (this.player.score < 0) ? validation = true : validation = false;
-    return validation;
-  }
-
-  score(): string {
-    return this.player.score.toString();
-  }
-
-  lose(ctx: CanvasRenderingContext2D): void {
-    if (this.checkLifesEqualZero() || this.checkScoreEqualZero()) {
-      Swal.fire('Game Over');
-      this.startGame(ctx);
-      this.gameRunning = false;
+        // Create an alien
+        const alien = new Alien(alienPos, speed, this.player as SpaceShip);
+        Manager.add_actor(alien);
+      }, new_alien_every);
     }
   }
 
+  // collisionDetecter(): void {
+  //   this.aliens.forEach((alien) => {
+  //     if (alien.collisionDetector()) {
+  //       this.player.lifes -= 1;
+  //       alien.deathSound();
+  //     }
+  //     if (alien.checkDeath()) {
+  //       this.aliens = this.aliens.filter((e) => e !== alien);
+  //       alien.deathSound();
+  //     }
+  //     if (alien.checkOutLimits()) {
+  //       this.aliens = this.aliens.filter((e) => e !== alien);
+  //       this.player.updateScore(false);
+  //     }
+  //   });
+  // }
+
+  // checkLifesEqualZero(): boolean {
+  //   let validation = false;
+  //   this.player.lifes <= 0 ? (validation = true) : (validation = false);
+  //   return validation;
+  // }
+
+  // checkScoreEqualZero(): boolean {
+  //   let validation = false;
+  //   this.player.score < 0 ? (validation = true) : (validation = false);
+  //   return validation;
+  // }
 }
 
 export let gameManager: GameManager;
