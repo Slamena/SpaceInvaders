@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "vite",
-    "build": "tsc"
+    "build": "vite build --outDir docs"
   },
   "dependencies": {
     "sweetalert2": "^11.6.7",
