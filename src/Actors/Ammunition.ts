@@ -7,10 +7,10 @@ import { Manager } from "./ActorManager";
 import { SpaceShip } from "./SpaceShip";
 
 const SPRITES = [
-  "/images/lasersprite1.png",
-  "/images/lasersprite2.png",
-  "/images/lasersprite3.png",
-  "/images/lasersprite4.png",
+  "/images/laserSprites/lasersprite1.png",
+  "/images/laserSprites/lasersprite2.png",
+  "/images/laserSprites/lasersprite3.png",
+  "/images/laserSprites/lasersprite4.png",
 ];
 
 // Load all sprites as individual frames to be rendered

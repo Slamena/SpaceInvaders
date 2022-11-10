@@ -10,9 +10,9 @@ import { abs, hypot } from "../utils/Math";
 import { Manager } from "./ActorManager";
 
 const SPACESHIP_SPRITE = {
-  BASE: load_sprite("/images/spaceship.png"),
-  LEFT: load_sprite("/images/spaceshipleft.png"),
-  RIGHT: load_sprite("/images/spaceshipright.png"),
+  BASE: load_sprite("/images/spaceshipSprites/spaceship.png"),
+  LEFT: load_sprite("/images/spaceshipSprites/spaceshipleft.png"),
+  RIGHT: load_sprite("/images/spaceshipSprites/spaceshipright.png"),
 };
 
 export class SpaceShip extends Actor {
