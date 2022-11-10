@@ -52,7 +52,7 @@ export class GameManager extends Actor {
   update(delta: number): void {
     // Keep only live actors
     //this.aliens = this.aliens.filter((a) => !a.to_delete);
-    if (this.player?.lifes < 1  || this.player?.score < 0) {
+    if ((this.player?.lifes as number) < 1  || (this.player?.score as number) < 0) {
       // Stop Generating aliens
       clearInterval(this.timer_id);
       // Create a new instance
