@@ -97,7 +97,10 @@ export class SpaceShip extends Actor {
     }
     ctx.font = "35px Consolas";
     ctx.fillStyle = "#FFF";
-    ctx.fillText(`Lifes: ${this.lifes}`, 1320, 30);
+    ctx.fillText(`Lifes: ${this.lifes}`, 1300, 30);
+    ctx.font = "35px Consolas";
+    ctx.fillStyle = "#FFF";
+    ctx.fillText(`Score: ${this.score}`, 1300, 60);
   }
 
   keyboardEventDown(key: string): void {
@@ -132,27 +135,6 @@ export class SpaceShip extends Actor {
   shoot(): void {
     const bala = new Ammunition(this);
     Manager.add_actor(bala);
-  }
-
-  updateScore(score: boolean): void {
-    if (score) {
-      this.score += 50;
-    } else {
-      this.score -= 500;
-    }
-  }
-
-  checkLifes(): boolean {
-    if (this.lifes === 0) {
-      this.position = { x: 700, y: 1350 };
-      this.reloading = false;
-      this.acceleration = 0;
-      this.score = 0;
-      this.lifes = 3;
-      this.maxMuni = 25;
-      return true;
-    }
-    return false;
   }
 
   actorIntersectsWithPlayerAmmunition(a: Alien) {

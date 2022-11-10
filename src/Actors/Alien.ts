@@ -48,12 +48,13 @@ export class Alien extends Actor {
       return;
     }
 
-    if (this.player.actorIntersectsWithPlayerAmmunition(this)) {
-      // The current alien interesects with playuer amunition
-      this.player.score += 1;
-      this.deathSound();
-      this.to_delete = true;
-    }
+    // if (this.player.actorIntersectsWithPlayerAmmunition(this)) {
+    //   // The current alien interesects with playuer amunition
+    //   this.player.score += 1;
+    //   this.deathSound();
+    //   console.log("Die");
+    //   this.to_delete = true;
+    // }
 
     if (this.checkOutLimits()) {
       // death without sound because we are out of Y axis limits
