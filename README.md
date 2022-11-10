@@ -22,70 +22,69 @@
 
 ---
 
-1. [Game Preview](#another-section)
+1. [Game Preview](#game-preview)
 2. [About the Game](#✦-about)
     - [Goal](#✦-goal)
     - [Instructions](#✦-instructions)
 3. [Motivation](#✦-motivation)
 4. [Dependencies](#✦-dependencies)
-5. [Proyect Structure](#✦-project-structure)
-6. [Instalation](#Instalation)
-7. [Code Examples](#✦-code-examples)
 8. [Thanks](#✦-thanks)
 9. [Licenses](#✦-licenses)
 
 <br/>
 <br/>
 
-## **Another Section**
+## **Game Preview**
 
 ---
 
 <p align="center">
-    <img src="https://media0.giphy.com/media/InwCehQTX3O9SFeS17/giphy.gif?cid=790b7611cc4f5493a9de5f31a038e77b9477d1109efc99d2&rid=giphy.gif&ct=g" alt="CyberPong logo" width="800"/>
+    <a href="https://gyazo.com/629f48b268f3ac58fabed062ee75743b"><img src="https://i.gyazo.com/629f48b268f3ac58fabed062ee75743b.gif" alt="SpaceInvader Demo" width="720"/></a>
 </p>
 
 <br/>
 <br/>
 
-## **✦ About**
+## **About**
 
 ---
 
-Mid-course project. 2D Canvas HTML game made during the CORE Code School bootcamp. It is a classic Pong game with a retro style and with the artistic trend of cyberpunk.
+First-course project. 2D Canvas HTML game made during the CORE Code School bootcamp.
 
-It is important to mention that the game is for play **_--- 1v1 ---_**. That means that is a local multiplayer game. Enjoy it!.
+Some aliens want to invade the earth. Don't let them go through your high trained defense. Use your lasers to destroy them and keep the earth safe.
 
-### **✦ Goal**
+### **Goal**
 
----
-
--   Stay focus. You need to beat your opponent. Use the " player bar" to hit the ball while it bouncing through all the field.
-
--   There are some points spreaded int he field to make the game easier to win, if you catch the points of course, so grab it all.
-
--   Win the first player who get 10 points. Next the game will restart.
-
--   Play as much as you want.
+- Destroy as many aliens ship as you can.
+- Keep the aliens away from the earth.
+- The aliens will try to destroy you.
 
 <br/>
 
-### **✦ Instructions**
+### **Instructions**
 
----
+-   Once you hit the start button some aliens are going to start showing from the top of the screen.
 
-Input map for players control:
+-   Use the controls below to destroy the aliens.
 
-| Move       | Player 1 | Player 2 |
-| ---------- | -------- | -------- |
-| Begin game | Spacebar | Spacebar |
-| Move up    | W        | I        |
-| Move down  | S        | K        |
+-   Each alien you destroy will give you 1 point.
+
+-   If an alien crush against your space ship you will lose one life. You get to 0... game over.
+
+-   Each alien that go through the window will deduct 2 points. You get to 0... game over.
+
+Main controls for the player:
+
+| Controls   |  Player  |
+| ---------- | -------- |
+| Move right | D        |
+| Move left  | A        |
+| Shoot      | Space    |
 
 <br/>
 <br/>
 
-## **✦ Motivation**
+## **Motivation**
 
 ---
 
@@ -98,7 +97,7 @@ Just kidding.
 <br/>
 <br/>
 
-## **✦ Dependencies**
+## **Dependencies**
 
 ---
 
@@ -112,42 +111,7 @@ Project dependencies:
 <br/>
 <br/>
 
-## **✦ Project Structure**
-
----
-
-```
-
-```
-
-<br/>
-<br/>
-
-## **✦ Instalation**
-
----
-
-`--- under review ---`
-
-## **✦ Code Examples**
-
----
-
--   ### Ball Class:
-
-This class represents a lot of the project. It was a really hard and important class to develop.
-
-_Method "update" is nice to focus on, because you can see the ball bouncing effect code._
-
-```ts
-let var: number;
-```
-
-
-<br/>
-<br/>
-
-## **✦ Thanks**
+## **Thanks**
 
 ---
 
@@ -156,19 +120,9 @@ I want to thank our teacher [Luis Miguel Feijoo](https://github.com/luismiguelfe
 <br/>
 <br/>
 
-## **✦ Licenses**
+## **Licenses**
 
 ---
 
-[MIT](https://choosealicense.com/licenses/mit/)
-[MIT](https://www.markdownguide.org/cheat-sheet/)
-
-## Task List
-
-- [ ] foo
-- [x] bar
-
-
-I need to highlight these ==very important words==.
-
-H~2~O
+[MIT](https://choosealicense.com/licenses/mit/)<br/>
+[Markdown guide](https://www.markdownguide.org/cheat-sheet/)
