@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="./src/assets/logo.png" alt="CyberPong logo" width="700"/>
+    <img src="./public/images/LogoTitle.png" alt="SpaceInvader logo" width="700"/>
 </p>
 
 <br/>
@@ -7,21 +7,13 @@
 
 👉 [**✦✦✦ Play here! ✦✦✦**](https://systrent.github.io/CyberPong/)
 
-👉 An original game _NOT_ inspired by Pong classic game and Cyberpunk 2077. Seriously no.
-
-<br/>
-
-## ipsum lore
-
 <br/>
 <br/>
 
 [![Node JS](https://img.shields.io/badge/Node-v18.0.0-%23000000?style=for-the-badge&logo=appveyor)](https://nodejs.org/)
 [![NPM](https://img.shields.io/badge/npm-v8.10.0-%23293462?style=for-the-badge&logo=appveyor)](https://www.npmjs.com/)
-[![Parcel](https://img.shields.io/badge/parcel-v2.5.0-%23EC9B3B?style=for-the-badge&logo=appveyor)](https://parceljs.org/)
 [![Typescript](https://img.shields.io/badge/typescript-v4.6.4-%23F24C4C?style=for-the-badge&logo=appveyor)](https://www.typescriptlang.org/)
 [![Sweetalert2](https://img.shields.io/badge/sweetalert2-v11.4.15-%23A1E3D8?style=for-the-badge&logo=appveyor)](https://sweetalert2.github.io)
-[![AnimateCSS](https://img.shields.io/badge/animate.css-v4.1.1-%23AB46D2?style=for-the-badge&logo=appveyor)](https://animate.style)
 
 <br/>
 <br/>
