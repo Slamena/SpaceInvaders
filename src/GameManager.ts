@@ -6,6 +6,7 @@ import { Actor } from "./actors/Actor";
 import { Manager } from "./actors/ActorManager";
 import { Alien } from "./actors/Alien";
 import { FPSViewer } from "./actors/fpsviewer";
+import Swal from "sweetalert2";
 
 export class GameManager extends Actor {
   player?: SpaceShip;
@@ -57,6 +58,7 @@ export class GameManager extends Actor {
       clearInterval(this.timer_id);
       // Create a new instance
       //const new_manager = new GameManager();
+      Swal.fire('Game Over');
       window.location.assign("/");
     }
   }

@@ -88,11 +88,7 @@ Main controls for the player:
 
 ---
 
-I got inspired by my love to games. I've been playing video games for a long time. I want to build a retro classic game with a different and unique style, so I made this.
-
-I repeat, _NOT_ inspired by Cyberpunk 2077.
-
-Just kidding.
+I've been playing video games for almost all my life. Since I have memories, I had a controller in my hands. I want to build a retro classic game with a different and personal unique style, so I made my own version from space invaders.
 
 <br/>
 <br/>
@@ -115,7 +111,7 @@ Project dependencies:
 
 ---
 
-I want to thank our teacher [Luis Miguel Feijoo](https://github.com/luismiguelfeijoo), for all the help provided during these weeks of class and for being available to answer any questions. Nor would it have been possible without the support of my colleagues.
+I want to thank our teacher [Juan Pablo Mora Serrano](https://github.com/Systrent) and [Marc Pomar](https://github.com/boyander), for all the help provided during these classes weeks and for being available to answer any questions. Nor would it have been possible without the support of my colleagues.
 
 <br/>
 <br/>
