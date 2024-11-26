@@ -5,7 +5,6 @@
 <br/>
 <br/>
 
-👉 [**✦✦✦ Play here! ✦✦✦**](https://systrent.github.io/CyberPong/)
 
 <br/>
 <br/>
